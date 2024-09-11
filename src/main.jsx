@@ -13,7 +13,8 @@ import CreateTrip from "./create-trip/index.jsx";
 import Header from "./components/custom/Header.jsx";
 import { Toaster } from "sonner";
 
-
+import Check from "./components/custom/Check.jsx";
+import Viewtrip from "./view-trip/[tripId]/index.jsx";
 // Import your publishable key
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -30,14 +31,22 @@ const router = createBrowserRouter([
     path: "/create-trip",
     element: <CreateTrip />,
   },
+  {
+    path: "/view-trip/:tripId",
+    element: <Viewtrip />,
+  },
+  {
+    path: "/check",
+    element: <Check />,
+  }
 ]);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    {/* <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/"> */}
+    <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
       <Header />
       <Toaster />
       <RouterProvider router={router} />
-    {/* </ClerkProvider> */}
+    </ClerkProvider>
   </StrictMode>
 );
